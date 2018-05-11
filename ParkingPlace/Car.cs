@@ -22,5 +22,10 @@ namespace ParkingPlace
         /// Car type from enum CarTypes
         /// </summary>
         public CarTypes CarType { get; set; }
+
+        /// <summary>
+        /// Number of parking place
+        /// </summary>
+        public int NumberOfParkingPlace { get; set; }
     }
 }
