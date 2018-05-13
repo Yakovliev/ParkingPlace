@@ -44,9 +44,9 @@
   <ItemGroup>
     <Compile Include="Car.cs" />
     <Compile Include="CarBalanceLessZeroException.cs" />
-    <Compile Include="CarType.cs" />
     <Compile Include="CarTypes.cs" />
     <Compile Include="Menu.cs" />
+    <Compile Include="NoFreeParkingPlacesException.cs" />
     <Compile Include="Parking.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
