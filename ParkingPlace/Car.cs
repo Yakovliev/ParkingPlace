@@ -11,7 +11,7 @@ namespace ParkingPlace
         /// <summary>
         /// Identifier of car
         /// </summary>
-        public int ID { get; set; }
+        public int Id { get; set; }
 
         /// <summary>
         /// Car account balance
