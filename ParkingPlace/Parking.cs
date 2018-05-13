@@ -8,5 +8,19 @@ namespace ParkingPlace
 {
     public class Parking
     {
+        /// <summary>
+        /// List of cars
+        /// </summary>
+        public List<Car> ListOfCars { get; set; }
+
+        /// <summary>
+        /// List of transaction
+        /// </summary>
+        public List<Transaction> ListOfTransactions { get; set; }
+
+        /// <summary>
+        /// Balance of parking
+        /// </summary>
+        public double Balance { get; set; }
     }
 }
