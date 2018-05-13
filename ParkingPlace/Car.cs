@@ -35,8 +35,37 @@ namespace ParkingPlace
 
         private static object Lock = new object();
 
-        public Car()
+        /// <summary>
+        /// Instance of Car class WITHOUT starting Balance (Balance property)
+        /// </summary>
+        /// <param name="carType">Type of Car</param>
+        /// <param name="numberOfParkingPlace">Number of parking place</param>
+        public Car(CarTypes carType, int numberOfParkingPlace)
         {
+            SetIdOfCar();
+
+            CarType = carType;
+
+            NumberOfParkingPlace = numberOfParkingPlace;
+
+            Balance = 0D;
+        }
+
+        /// <summary>
+        /// Instance of Car class WITH starting Balance (Balance property)
+        /// </summary>
+        /// <param name="carType">Type of Car</param>
+        /// <param name="numberOfParkingPlace">Number of parking place</param>
+        /// <param name="defaultBalance">Starting parking balance of car</param>
+        public Car(CarTypes carType, int numberOfParkingPlace, double defaultBalance)
+        {
+            SetIdOfCar();
+
+            CarType = carType;
+
+            NumberOfParkingPlace = numberOfParkingPlace;
+
+            Balance = defaultBalance;
 
         }
 
