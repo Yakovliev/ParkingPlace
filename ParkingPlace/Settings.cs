@@ -38,5 +38,20 @@ namespace ParkingPlace
         /// Coefficient of fine
         /// </summary>
         public double Fine { get; private set; } = 2d;
+
+        /// <summary>
+        /// Instance of Settings class. Pattern Singleton
+        /// </summary>
+        private static readonly Settings settings = new Settings();
+
+        private Settings()
+        {
+
+        }
+
+        public static Settings GetSettings()
+        {
+            return settings;
+        }
     }
 }
