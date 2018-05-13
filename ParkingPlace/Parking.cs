@@ -170,6 +170,11 @@ namespace ParkingPlace
                 }
             }
 
+            if (ListOfCars[counterOfDeleteCar].Balance < 0)
+            {
+                throw new CarBalanceLessZeroException("You can`t delete the car. Balance less zero!");
+            }
+
             //Можна доробити, щоб при видаленні машини спрацьовував метод Dispose() класу Car. Тоді будуть вивільнятися id видалених
             //і вони будуть використані для створення нових машин.
             ListOfCars.RemoveAt(counterOfDeleteCar);
@@ -199,6 +204,11 @@ namespace ParkingPlace
             if (counterOfId >= ListOfCars.Count)
             {
                 throw new IdOfCarDoesNotExistException("Id of car does not exist!");
+            }
+
+            if (ListOfCars[counterOfId].Balance < 0)
+            {
+                throw new CarBalanceLessZeroException("You can`t delete the car. Balance less zero!");
             }
 
             FreeParkingPlacesList[ListOfCars[counterOfId].NumberOfParkingPlace] = true;
