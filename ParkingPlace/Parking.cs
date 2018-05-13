@@ -216,6 +216,39 @@ namespace ParkingPlace
         }
 
         /// <summary>
+        /// Replenish balance of car by id.
+        /// </summary>
+        /// <param name="idOfCar">Id of car</param>
+        /// <param name="amount">Amount of money</param>
+        public void ReplenishCarBalanceById(int idOfCar, double amount)
+        {
+            if (amount <= 0)
+            {
+                throw new AmountOfMoneyLessZeroException("Amount of money less or equal zero!");
+            }
+
+            int counterOfId = 0;
+
+            foreach (Car item in ListOfCars)
+            {
+                if (item.Id == idOfCar)
+                {
+                    break;
+                }
+                else
+                {
+                    counterOfId++;
+                }
+            }
+
+            if (counterOfId >= ListOfCars.Count)
+            {
+                throw new IdOfCarDoesNotExistException("Id of car does not exist!");
+            }
+
+            ListOfCars[counterOfId].Balance += amount;
+        }
+
         /// Get number of free parking places.
         /// </summary>
         /// <returns>Number of free parking places.</returns>
