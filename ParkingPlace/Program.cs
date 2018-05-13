@@ -27,6 +27,10 @@ namespace ParkingPlace
             //parking.AddCar(CarTypes.Motorcycle, -2);
 
             parking.ReplenishCarBalanceById(0, 25);
+
+            int free = parking.GetFreeParkingPlaces();
+            int occupied = parking.GetOccupiedParkingPlaces();
+
         }
     }
 }
