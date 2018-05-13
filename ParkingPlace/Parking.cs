@@ -214,5 +214,43 @@ namespace ParkingPlace
             FreeParkingPlacesList[ListOfCars[counterOfId].NumberOfParkingPlace] = true;
             ListOfCars.RemoveAt(counterOfId);
         }
+
+        /// <summary>
+        /// Get number of free parking places.
+        /// </summary>
+        /// <returns>Number of free parking places.</returns>
+        public int GetFreeParkingPlaces()
+        {
+            int numberOfFreeParkingPlaces = 0;
+
+            foreach (bool item in FreeParkingPlacesList)
+            {
+                if (item)
+                {
+                    numberOfFreeParkingPlaces++;
+                }
+            }
+
+            return numberOfFreeParkingPlaces;
+        }
+
+        /// <summary>
+        /// Get number of occupied parking places.
+        /// </summary>
+        /// <returns>Number of occupied parking places.</returns>
+        public int GetOccupiedParkingPlaces()
+        {
+            int numberOfOccupiedParkingPlaces = 0;
+
+            foreach (bool item in FreeParkingPlacesList)
+            {
+                if (!item)
+                {
+                    numberOfOccupiedParkingPlaces++;
+                }
+            }
+
+            return numberOfOccupiedParkingPlaces;
+        }
     }
 }
