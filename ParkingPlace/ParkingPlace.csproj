@@ -43,6 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Car.cs" />
+    <Compile Include="CarBalanceLessZeroException.cs" />
     <Compile Include="CarType.cs" />
     <Compile Include="CarTypes.cs" />
     <Compile Include="Menu.cs" />

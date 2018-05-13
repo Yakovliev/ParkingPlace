@@ -65,8 +65,14 @@ namespace ParkingPlace
 
             NumberOfParkingPlace = numberOfParkingPlace;
 
-            Balance = defaultBalance;
-
+            if (defaultBalance < 0)
+            {
+                throw new CarBalanceLessZeroException("Starting balance less than zero!");
+            }
+            else
+            {
+                Balance = defaultBalance;
+            }
         }
 
         public void Dispose()
