@@ -28,9 +28,14 @@ namespace ParkingPlace
         /// </summary>
         private static readonly Parking parking = new Parking();
 
+        /// <summary>
+        /// Settings of parking
+        /// </summary>
+        public Settings Settings { get; private set; }
+
         private Parking()
         {
-
+            Settings = Settings.GetSettings();
         }
 
         public static Parking GetParking()
