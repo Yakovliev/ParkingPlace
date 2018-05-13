@@ -99,6 +99,7 @@ namespace ParkingPlace
                 }
 
                 ListOfCars.Add(new Car(carType, numberOfFreeParkingPlace));
+                FreeParkingPlacesList[numberOfFreeParkingPlace] = false;
             }
             else
             {
@@ -129,11 +130,89 @@ namespace ParkingPlace
                 }
 
                 ListOfCars.Add(new Car(carType, numberOfFreeParkingPlace, defaultBalance));
+                FreeParkingPlacesList[numberOfFreeParkingPlace] = false;
+
             }
             else
             {
                 throw new NoFreeParkingPlacesException("No free parking places!");
             }
+        }
+
+        /// <summary>
+        /// Delete a car by number of parking place.
+        /// </summary>
+        /// <param name="numberOfParkingPlace">Number of parking place where is located the car which user wants to delete.</param>
+        public void DeleteCarByNumberOfParkingPlace(int numberOfParkingPlace)
+        {
+            //numberOfParkingPlace = 0, 1, 2, ..., Settings.ParkingSpace - 1
+            if (numberOfParkingPlace > Settings.ParkingSpace - 1)
+            {
+                throw new NumberOfParkingPlaceDoesNotExistException("Number of parking place does not exist!");
+            }
+
+            if (FreeParkingPlacesList[numberOfParkingPlace])
+            {
+                throw new ParkingPlaceIsFreeException("We can`t delete a car! Parking place is already free!");
+            }
+
+            int counterOfDeleteCar = 0;
+
+            foreach (Car item in ListOfCars)
+            {
+                if (item.NumberOfParkingPlace != numberOfParkingPlace)
+                {
+                    counterOfDeleteCar++;
+                }
+                else
+                {
+                    break;
+                }
+            }
+
+            if (ListOfCars[counterOfDeleteCar].Balance < 0)
+            {
+                throw new CarBalanceLessZeroException("You can`t delete the car. Balance less zero!");
+            }
+
+            //Можна доробити, щоб при видаленні машини спрацьовував метод Dispose() класу Car. Тоді будуть вивільнятися id видалених
+            //і вони будуть використані для створення нових машин.
+            ListOfCars.RemoveAt(counterOfDeleteCar);
+            FreeParkingPlacesList[numberOfParkingPlace] = true;
+        }
+
+        /// <summary>
+        /// Delete a car by id.
+        /// </summary>
+        /// <param name="idOfCar">Id of car.</param>
+        public void DeleteCarById(int idOfCar)
+        {
+            int counterOfId = 0;
+
+            foreach (Car item in ListOfCars)
+            {
+                if (item.Id == idOfCar)
+                {
+                    break;
+                }
+                else
+                {
+                    counterOfId++;
+                }
+            }
+
+            if (counterOfId >= ListOfCars.Count)
+            {
+                throw new IdOfCarDoesNotExistException("Id of car does not exist!");
+            }
+
+            if (ListOfCars[counterOfId].Balance < 0)
+            {
+                throw new CarBalanceLessZeroException("You can`t delete the car. Balance less zero!");
+            }
+
+            FreeParkingPlacesList[ListOfCars[counterOfId].NumberOfParkingPlace] = true;
+            ListOfCars.RemoveAt(counterOfId);
         }
     }
 }
