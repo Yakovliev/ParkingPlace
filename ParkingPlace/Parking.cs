@@ -22,5 +22,20 @@ namespace ParkingPlace
         /// Balance of parking
         /// </summary>
         public double Balance { get; set; }
+
+        /// <summary>
+        /// Instance of Parking class. Pattern Singleton
+        /// </summary>
+        private static readonly Parking parking = new Parking();
+
+        private Parking()
+        {
+
+        }
+
+        public static Parking GetParking()
+        {
+            return parking;
+        }
     }
 }
