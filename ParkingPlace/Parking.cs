@@ -16,7 +16,7 @@ namespace ParkingPlace
         /// <summary>
         /// List of transaction
         /// </summary>
-        public List<Transaction> ListOfTransactions { get; set; }
+        public List<Transaction> ListOfTransactions { get; private set; } = new List<Transaction>();
 
         /// <summary>
         /// Balance of parking
@@ -284,6 +284,31 @@ namespace ParkingPlace
             }
 
             return numberOfOccupiedParkingPlaces;
+        }
+
+        /// <summary>
+        /// Write off funds
+        /// </summary>
+        public void WriteOffFunds()
+        {
+            DateTime dateTimeNow = DateTime.Now;
+
+            foreach (Car item in ListOfCars)
+            {
+                double writtenOffFunds;
+
+                if (item.Balance >= 0)
+                {
+                    writtenOffFunds = Settings.ParkingPrices[item.CarType];
+                }
+                else
+                {
+                    writtenOffFunds = Settings.Fine * Settings.ParkingPrices[item.CarType];
+                }
+
+                item.Balance -= writtenOffFunds;
+                ListOfTransactions.Add(new Transaction(dateTimeNow, item.Id, writtenOffFunds));
+            }
         }
     }
 }

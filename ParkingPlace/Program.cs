@@ -31,6 +31,11 @@ namespace ParkingPlace
             int free = parking.GetFreeParkingPlaces();
             int occupied = parking.GetOccupiedParkingPlaces();
 
+            parking.AddCar(CarTypes.Bus);
+
+            parking.WriteOffFunds();
+            parking.WriteOffFunds();
+
         }
     }
 }
