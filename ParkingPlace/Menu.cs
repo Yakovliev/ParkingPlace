@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
+using System.Threading;
 
 namespace ParkingPlace
 {
@@ -29,6 +30,8 @@ namespace ParkingPlace
             {
                 File.Delete(path);
             }
+
+            WriteOffFunds();
         }
 
         public static Menu GetMenu()
@@ -167,7 +170,20 @@ namespace ParkingPlace
         /// </summary>
         public void WriteOffFunds()
         {
+            var thread = new Thread(WriteOffFundsThread);
+            thread.Start();
+        }
 
+        private static void WriteOffFundsThread()
+        {
+            Parking parking = Parking.GetParking();
+
+            while (true)
+            {
+                Thread.Sleep(parking.Settings.Timeout * 1000);
+                parking.WriteOffFunds();
+                //Console.WriteLine("Written-off"); //Test
+            }
         }
 
 

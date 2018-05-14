@@ -60,6 +60,11 @@ namespace ParkingPlace
 
             Menu menu = Menu.GetMenu();
 
+            menu.AddCar(CarTypes.Bus, 20);
+            menu.AddCar(CarTypes.Truck);
+            menu.AddCar(CarTypes.Passenger, 10);
+
+
         }
     }
 }
