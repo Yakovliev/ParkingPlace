@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
 
 namespace ParkingPlace
 {
@@ -22,7 +23,12 @@ namespace ParkingPlace
         {
             Parking = Parking.GetParking();
 
+            string path = "Transaction.log";
 
+            if (File.Exists(path))
+            {
+                File.Delete(path);
+            }
         }
 
         public static Menu GetMenu()
