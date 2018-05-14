@@ -32,6 +32,8 @@ namespace ParkingPlace
             }
 
             WriteOffFunds();
+
+            WriteAtTransactionLog();
         }
 
         public static Menu GetMenu()
@@ -182,8 +184,60 @@ namespace ParkingPlace
             {
                 Thread.Sleep(parking.Settings.Timeout * 1000);
                 parking.WriteOffFunds();
-                //Console.WriteLine("Written-off"); //Test
+                Console.WriteLine("Written-off"); //Test
             }
+        }
+
+        /// <summary>
+        /// Get StringBuilder instance with transaction for last minute.
+        /// </summary>
+        public void GetTransactionsForLastMinute()
+        {
+            StringBuilder stringBuilder = Parking.GetTransactionsForLastMinute();
+
+            Console.WriteLine(stringBuilder.ToString());
+        }
+
+        /// <summary>
+        /// Get earned funds for last minute.
+        /// </summary>
+        public void GetEarnedFundsForLastMinute()
+        {
+            double earnedFundsForLastMinute = 0;
+
+            earnedFundsForLastMinute = Parking.GetEarnedFundsForLastMinute();
+
+            Console.WriteLine("Earned funds for last minute: {0}", earnedFundsForLastMinute);
+        }
+
+        /// <summary>
+        /// Write transactions for last minute into Transaction.log file every minute.
+        /// </summary>
+        public void WriteAtTransactionLog()
+        {
+            var thread = new Thread(WriteAtTransactionLogThread);
+            thread.Start();
+        }
+
+        private static void WriteAtTransactionLogThread()
+        {
+            Parking parking = Parking.GetParking();
+
+            while (true)
+            {
+                Thread.Sleep(60 * 1000);
+                parking.WriteAtTransactionLog();
+            }
+        }
+
+        /// <summary>
+        /// Read date from Transaction.log
+        /// </summary>
+        public void ReadTransactionLog()
+        {
+            string dateFromTransactionLog = Parking.ReadTransactionLog();
+
+            Console.WriteLine(dateFromTransactionLog);
         }
 
 

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Threading;
 
 namespace ParkingPlace
 {
@@ -64,7 +65,22 @@ namespace ParkingPlace
             menu.AddCar(CarTypes.Truck);
             menu.AddCar(CarTypes.Passenger, 10);
 
+            Thread.Sleep(10 * 1000);
+            menu.DeleteCarById(1);
 
+            menu.GetEarnedFundsForLastMinute();
+
+            Thread.Sleep(60 * 1000);
+            menu.GetTransactionsForLastMinute();
+
+            menu.GetEarnedFundsForLastMinute();
+
+            Thread.Sleep(60 * 1000);
+            menu.GetTransactionsForLastMinute();
+
+            Thread.Sleep(10 * 1000);
+            Console.WriteLine("______");
+            menu.ReadTransactionLog();
         }
     }
 }
