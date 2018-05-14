@@ -251,6 +251,7 @@ namespace ParkingPlace
             ListOfCars[counterOfId].Balance += amount;
         }
 
+        /// <summary>
         /// Get number of free parking places.
         /// </summary>
         /// <returns>Number of free parking places.</returns>
