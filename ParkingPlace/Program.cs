@@ -44,6 +44,7 @@ namespace ParkingPlace
 
             double earnedFundsForLastMinute = parking.GetEarnedFundsForLastMinute();
 
+            double balanceOfParking = parking.Balance;
         }
     }
 }

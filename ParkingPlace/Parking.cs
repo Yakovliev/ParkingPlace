@@ -21,7 +21,7 @@ namespace ParkingPlace
         /// <summary>
         /// Balance of parking
         /// </summary>
-        public double Balance { get; set; }
+        public double Balance { get; private set; } = 0;
 
         /// <summary>
         /// Instance of Parking class. Pattern Singleton
@@ -308,6 +308,8 @@ namespace ParkingPlace
 
                 item.Balance -= writtenOffFunds;
                 ListOfTransactions.Add(new Transaction(dateTimeNow, item.Id, writtenOffFunds));
+
+                Balance += writtenOffFunds;
             }
         }
 
