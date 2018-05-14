@@ -42,10 +42,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AmountOfMoneyLessZeroException.cs" />
     <Compile Include="Car.cs" />
-    <Compile Include="CarType.cs" />
+    <Compile Include="CarBalanceLessZeroException.cs" />
+    <Compile Include="CarTypes.cs" />
+    <Compile Include="IdOfCarDoesNotExistException.cs" />
     <Compile Include="Menu.cs" />
+    <Compile Include="NoFreeParkingPlacesException.cs" />
+    <Compile Include="NumberOfParkingPlaceDoesNotExistException.cs" />
     <Compile Include="Parking.cs" />
+    <Compile Include="ParkingPlaceIsFreeException.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Settings.cs" />

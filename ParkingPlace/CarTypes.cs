@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace ParkingPlace
 {
-    public class CarType
+    public enum CarTypes
     {
+        Passenger,
+        Truck,
+        Bus,
+        Motorcycle
     }
 }
