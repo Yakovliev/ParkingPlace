@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
+
 
 namespace ParkingPlace
 {
@@ -355,6 +357,33 @@ namespace ParkingPlace
             }
 
             return earnedFundsForLastMinute;
+        }
+
+        /// <summary>
+        /// Write transactions for last minute into Transaction.log file.
+        /// </summary>
+        public void WriteAtTransactionLog()
+        {
+            double earnedFundsForLastMinute = 0;
+
+            DateTime dateTimeNow = DateTime.Now;
+            DateTime dateTimeNowMinuseOneMinute = dateTimeNow.Subtract(new TimeSpan(0, 1, 0));
+
+            foreach (Transaction item in ListOfTransactions)
+            {
+                if (item.DateTimeOfTransaction > dateTimeNowMinuseOneMinute)
+                {
+                    earnedFundsForLastMinute += item.WrittenOffFunds;
+                }
+            }
+
+            string transactionLogString = dateTimeNow.ToLongDateString() + " " + dateTimeNow.ToLongTimeString() + "   Earned funds for last minute: " +
+                earnedFundsForLastMinute.ToString("#.##");
+
+            using (StreamWriter streamWriter = new StreamWriter("Transaction.log", true))
+            {
+                streamWriter.WriteLine(transactionLogString);
+            }
         }
     }
 }

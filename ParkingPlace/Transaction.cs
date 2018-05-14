@@ -44,7 +44,7 @@ namespace ParkingPlace
         {
             string transactionString;
 
-            transactionString = DateTimeOfTransaction.ToLongDateString() + "   " + "Id of car: " + IdOfCar.ToString() +
+            transactionString = DateTimeOfTransaction.ToLongDateString() + " " + DateTimeOfTransaction.ToLongTimeString() + "   " + "Id of car: " + IdOfCar.ToString() +
                 "   Written-off funds: " + WrittenOffFunds.ToString("#.##");
 
             return transactionString;
