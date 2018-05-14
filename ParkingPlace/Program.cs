@@ -10,50 +10,55 @@ namespace ParkingPlace
     {
         static void Main(string[] args)
         {
+            #region Test
             //Test
-            Parking parking = Parking.GetParking();
+            //Parking parking = Parking.GetParking();
 
-            parking.AddCar(CarTypes.Bus);
-            parking.AddCar(CarTypes.Motorcycle, 10);
-            parking.AddCar(CarTypes.Passenger, 0);
+            //parking.AddCar(CarTypes.Bus);
+            //parking.AddCar(CarTypes.Motorcycle, 10);
+            //parking.AddCar(CarTypes.Passenger, 0);
 
-            parking.DeleteCarByNumberOfParkingPlace(1);
-            parking.AddCar(CarTypes.Truck);
-            parking.AddCar(CarTypes.Passenger, 20);
+            //parking.DeleteCarByNumberOfParkingPlace(1);
+            //parking.AddCar(CarTypes.Truck);
+            //parking.AddCar(CarTypes.Passenger, 20);
 
-            parking.DeleteCarById(2);
-            parking.AddCar(CarTypes.Bus, 20);
+            //parking.DeleteCarById(2);
+            //parking.AddCar(CarTypes.Bus, 20);
 
-            //parking.AddCar(CarTypes.Motorcycle, -2);
+            ////parking.AddCar(CarTypes.Motorcycle, -2);
 
-            parking.ReplenishCarBalanceById(0, 25);
+            //parking.ReplenishCarBalanceById(0, 25);
 
-            int free = parking.GetFreeParkingPlaces();
-            int occupied = parking.GetOccupiedParkingPlaces();
+            //int free = parking.GetFreeParkingPlaces();
+            //int occupied = parking.GetOccupiedParkingPlaces();
 
-            parking.AddCar(CarTypes.Bus);
+            //parking.AddCar(CarTypes.Bus);
 
-            parking.WriteOffFunds();
-            parking.WriteOffFunds();
+            //parking.WriteOffFunds();
+            //parking.WriteOffFunds();
 
-            StringBuilder stringBuilder = parking.GetTransactionsForLastMinute();
+            //StringBuilder stringBuilder = parking.GetTransactionsForLastMinute();
 
-            Console.WriteLine(stringBuilder.ToString());
+            //Console.WriteLine(stringBuilder.ToString());
 
-            Console.ReadKey();
+            //Console.ReadKey();
 
-            double earnedFundsForLastMinute = parking.GetEarnedFundsForLastMinute();
+            //double earnedFundsForLastMinute = parking.GetEarnedFundsForLastMinute();
 
-            double balanceOfParking = parking.Balance;
+            //double balanceOfParking = parking.Balance;
 
-            parking.WriteAtTransactionLog();
-            parking.WriteAtTransactionLog();
+            //parking.WriteAtTransactionLog();
+            //parking.WriteAtTransactionLog();
 
-            string dateFromTransactionLog = parking.ReadTransactionLog();
+            //string dateFromTransactionLog = parking.ReadTransactionLog();
 
-            Console.WriteLine(dateFromTransactionLog);
+            //Console.WriteLine(dateFromTransactionLog);
 
-            Console.ReadKey();
+            //Console.ReadKey();
+
+            #endregion
+
+            Menu menu = Menu.GetMenu();
 
         }
     }
