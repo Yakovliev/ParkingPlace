@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
+
 
 namespace ParkingPlace
 {
@@ -21,7 +23,7 @@ namespace ParkingPlace
         /// <summary>
         /// Balance of parking
         /// </summary>
-        public double Balance { get; set; }
+        public double Balance { get; private set; } = 0;
 
         /// <summary>
         /// Instance of Parking class. Pattern Singleton
@@ -249,6 +251,7 @@ namespace ParkingPlace
             ListOfCars[counterOfId].Balance += amount;
         }
 
+        /// <summary>
         /// Get number of free parking places.
         /// </summary>
         /// <returns>Number of free parking places.</returns>
@@ -308,7 +311,96 @@ namespace ParkingPlace
 
                 item.Balance -= writtenOffFunds;
                 ListOfTransactions.Add(new Transaction(dateTimeNow, item.Id, writtenOffFunds));
+
+                Balance += writtenOffFunds;
             }
+        }
+
+        /// <summary>
+        /// Get StringBuilder instance with transaction for last minute.
+        /// </summary>
+        /// <returns>StringBuilder instance with transaction for last minute</returns>
+        public StringBuilder GetTransactionsForLastMinute()
+        {
+            DateTime dateTimeNow = DateTime.Now;
+            DateTime dateTimeNowMinuseOneMinute = dateTimeNow.Subtract(new TimeSpan(0, 1, 0));
+
+            StringBuilder stringBuilderOfTransaction = new StringBuilder();
+
+            foreach (Transaction item in ListOfTransactions)
+            {
+                if (item.DateTimeOfTransaction > dateTimeNowMinuseOneMinute)
+                {
+                    stringBuilderOfTransaction.AppendLine(item.ToString());
+                }
+            }
+
+            return stringBuilderOfTransaction;
+        }
+
+        /// <summary>
+        /// Get earned funds for last minute.
+        /// </summary>
+        /// <returns>Earned funds for last minute</returns>
+        public double GetEarnedFundsForLastMinute()
+        {
+            double earnedFundsForLastMinute = 0;
+
+            DateTime dateTimeNow = DateTime.Now;
+            DateTime dateTimeNowMinuseOneMinute = dateTimeNow.Subtract(new TimeSpan(0, 1, 0));
+
+            foreach (Transaction item in ListOfTransactions)
+            {
+                if (item.DateTimeOfTransaction > dateTimeNowMinuseOneMinute)
+                {
+                    earnedFundsForLastMinute += item.WrittenOffFunds;
+                }
+            }
+
+            return earnedFundsForLastMinute;
+        }
+
+        /// <summary>
+        /// Write transactions for last minute into Transaction.log file.
+        /// </summary>
+        public void WriteAtTransactionLog()
+        {
+            double earnedFundsForLastMinute = 0;
+
+            DateTime dateTimeNow = DateTime.Now;
+            DateTime dateTimeNowMinuseOneMinute = dateTimeNow.Subtract(new TimeSpan(0, 1, 0));
+
+            foreach (Transaction item in ListOfTransactions)
+            {
+                if (item.DateTimeOfTransaction > dateTimeNowMinuseOneMinute)
+                {
+                    earnedFundsForLastMinute += item.WrittenOffFunds;
+                }
+            }
+
+            string transactionLogString = dateTimeNow.ToLongDateString() + " " + dateTimeNow.ToLongTimeString() + "   Earned funds for last minute: " +
+                earnedFundsForLastMinute.ToString("#.##");
+
+            using (StreamWriter streamWriter = new StreamWriter("Transaction.log", true))
+            {
+                streamWriter.WriteLine(transactionLogString);
+            }
+        }
+
+        /// <summary>
+        /// Read date from Transaction.log
+        /// </summary>
+        /// <returns>Date from Transaction.log</returns>
+        public string ReadTransactionLog()
+        {
+            string dateFromTransactionLog = "";
+
+            using (StreamReader streamReader = new StreamReader("Transaction.log"))
+            {
+                dateFromTransactionLog = streamReader.ReadToEnd();
+            }
+
+            return dateFromTransactionLog;
         }
     }
 }
