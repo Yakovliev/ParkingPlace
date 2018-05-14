@@ -42,6 +42,8 @@ namespace ParkingPlace
 
             Console.ReadKey();
 
+            double earnedFundsForLastMinute = parking.GetEarnedFundsForLastMinute();
+
         }
     }
 }

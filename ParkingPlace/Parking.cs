@@ -311,6 +311,10 @@ namespace ParkingPlace
             }
         }
 
+        /// <summary>
+        /// Get StringBuilder instance with transaction for last minute.
+        /// </summary>
+        /// <returns>StringBuilder instance with transaction for last minute</returns>
         public StringBuilder GetTransactionsForLastMinute()
         {
             DateTime dateTimeNow = DateTime.Now;
@@ -327,6 +331,28 @@ namespace ParkingPlace
             }
 
             return stringBuilderOfTransaction;
+        }
+
+        /// <summary>
+        /// Get earned funds for last minute.
+        /// </summary>
+        /// <returns>Earned funds for last minute</returns>
+        public double GetEarnedFundsForLastMinute()
+        {
+            double earnedFundsForLastMinute = 0;
+
+            DateTime dateTimeNow = DateTime.Now;
+            DateTime dateTimeNowMinuseOneMinute = dateTimeNow.Subtract(new TimeSpan(0, 1, 0));
+
+            foreach (Transaction item in ListOfTransactions)
+            {
+                if (item.DateTimeOfTransaction > dateTimeNowMinuseOneMinute)
+                {
+                    earnedFundsForLastMinute += item.WrittenOffFunds;
+                }
+            }
+
+            return earnedFundsForLastMinute;
         }
     }
 }
