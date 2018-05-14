@@ -310,5 +310,23 @@ namespace ParkingPlace
                 ListOfTransactions.Add(new Transaction(dateTimeNow, item.Id, writtenOffFunds));
             }
         }
+
+        public StringBuilder GetTransactionsForLastMinute()
+        {
+            DateTime dateTimeNow = DateTime.Now;
+            DateTime dateTimeNowMinuseOneMinute = dateTimeNow.Subtract(new TimeSpan(0, 1, 0));
+
+            StringBuilder stringBuilderOfTransaction = new StringBuilder();
+
+            foreach (Transaction item in ListOfTransactions)
+            {
+                if (item.DateTimeOfTransaction > dateTimeNowMinuseOneMinute)
+                {
+                    stringBuilderOfTransaction.AppendLine(item.ToString());
+                }
+            }
+
+            return stringBuilderOfTransaction;
+        }
     }
 }

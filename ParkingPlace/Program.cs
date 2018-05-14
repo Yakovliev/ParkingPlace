@@ -36,6 +36,12 @@ namespace ParkingPlace
             parking.WriteOffFunds();
             parking.WriteOffFunds();
 
+            StringBuilder stringBuilder = parking.GetTransactionsForLastMinute();
+
+            Console.WriteLine(stringBuilder.ToString());
+
+            Console.ReadKey();
+
         }
     }
 }

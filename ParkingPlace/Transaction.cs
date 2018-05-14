@@ -40,5 +40,15 @@ namespace ParkingPlace
             WrittenOffFunds = writtenOffFunds;
         }
 
+        public override string ToString()
+        {
+            string transactionString;
+
+            transactionString = DateTimeOfTransaction.ToLongDateString() + "   " + "Id of car: " + IdOfCar.ToString() +
+                "   Written-off funds: " + WrittenOffFunds.ToString("#.##");
+
+            return transactionString;
+        }
+
     }
 }
