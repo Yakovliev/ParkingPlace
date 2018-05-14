@@ -49,6 +49,12 @@ namespace ParkingPlace
             parking.WriteAtTransactionLog();
             parking.WriteAtTransactionLog();
 
+            string dateFromTransactionLog = parking.ReadTransactionLog();
+
+            Console.WriteLine(dateFromTransactionLog);
+
+            Console.ReadKey();
+
         }
     }
 }

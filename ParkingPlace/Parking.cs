@@ -385,5 +385,21 @@ namespace ParkingPlace
                 streamWriter.WriteLine(transactionLogString);
             }
         }
+
+        /// <summary>
+        /// Read date from Transaction.log
+        /// </summary>
+        /// <returns>Date from Transaction.log</returns>
+        public string ReadTransactionLog()
+        {
+            string dateFromTransactionLog = "";
+
+            using (StreamReader streamReader = new StreamReader("Transaction.log"))
+            {
+                dateFromTransactionLog = streamReader.ReadToEnd();
+            }
+
+            return dateFromTransactionLog;
+        }
     }
 }
